@@ -20,9 +20,10 @@
     </form>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
+        function handleSubmit(event) { //submit event triggered by user
+            event.preventDefault();//prevent default action
 
+            //data stores the output
             const data = new FormData(event.target);
 
             // Do a bit of work to convert the entries to a plain JS object
