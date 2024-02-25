@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HTML Login</title>
 </head>
 
 <body>
     <h1>Login with your credentials</h1>
 
-    <form onsubmit="saveData(event)">
+    <form id="loginForm">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"><br><br>
         <label for="pwd">Password:</label>
@@ -19,33 +19,22 @@
     </form>
 
     <script>
-function saveData(event){
-    event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('pwd').value;
-
-    const userData = {email, password};
-
-    localStorage.setItem('userData', JSON.stringify(userData));
-}
+        const form = document.querySelector("form");
+        form.addEventListener("submit", handleSubmit);
 
 
-        // const form = document.querySelector('form');
-        // form.addEventListener('submit', handleSubmit);
+        function handleSubmit(event) { //submit event triggered by user
+            event.preventDefault();//prevent default: stop form from submitting
 
+            //data stores the output
+            const data = new FormData(event.target);
 
-        // function handleSubmit(event) { //submit event triggered by user
-        //     event.preventDefault();//prevent default: stop form from submitting
+            // Do a bit of work to convert the entries to a plain JS object
+            const value = Object.fromEntries(data.entries());
 
-        //     //data stores the output
-        //     const data = new FormData(event.target);
-
-        //     // Do a bit of work to convert the entries to a plain JS object
-        //     const value = Object.fromEntries(data.entries());
-
-        //     console.log({ value });
-        // }
+            console.log({ value });
+        }
 
 
     </script>
