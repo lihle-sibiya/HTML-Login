@@ -20,16 +20,8 @@
     </form>
 
     <script>
-const formToJSON = (elements) => 
-[].reduce.call(
-    elements,
-    (data, element) => {
-        data[element.name] = element.value;
-        return data;
-    },
-{}
-);
-
+const form = document.querySelector('form');
+               form.addEventListener('submit', handleSubmit);
 
 
         function handleSubmit(event) { //submit event triggered by user
@@ -44,9 +36,7 @@ const formToJSON = (elements) =>
             console.log({ value });
         }
 
-        // const form = document.querySelector('form');
-        const form = document.getElementsByClassName('contact-form')[0];
-        form.addEventListener('submit', handleSubmit);
+        
     </script>
 
 </body>
