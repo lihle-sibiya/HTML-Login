@@ -19,21 +19,33 @@
     </form>
 
     <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', handleSubmit);
+function saveData(event){
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('pwd').value;
+
+    const userData = {email, password};
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
 
 
-        function handleSubmit(event) { //submit event triggered by user
-            event.preventDefault();//prevent default: stop form from submitting
+        // const form = document.querySelector('form');
+        // form.addEventListener('submit', handleSubmit);
 
-            //data stores the output
-            const data = new FormData(event.target);
 
-            // Do a bit of work to convert the entries to a plain JS object
-            const value = Object.fromEntries(data.entries());
+        // function handleSubmit(event) { //submit event triggered by user
+        //     event.preventDefault();//prevent default: stop form from submitting
 
-            console.log({ value });
-        }
+        //     //data stores the output
+        //     const data = new FormData(event.target);
+
+        //     // Do a bit of work to convert the entries to a plain JS object
+        //     const value = Object.fromEntries(data.entries());
+
+        //     console.log({ value });
+        // }
 
 
     </script>
