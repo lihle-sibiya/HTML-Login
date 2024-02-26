@@ -14,29 +14,49 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"><br><br>
         <label for="pwd">Password:</label>
-        <input type="password" id="pwd" name="pwd" minlength="5"><br><br>
+        <input type="password" id="pwd" name="pwd" minlength="5" required><br><br>
         <button type="submit">Login</button>
     </form>
 
     <script>
-
-        const form = document.querySelector("form");
+        const form = document.getElementById("loginForm");
         form.addEventListener("submit", handleSubmit);
 
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        function handleSubmit(event) { //submit event triggered by user
-            event.preventDefault();//prevent default: stop form from submitting
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pwd").value;
 
-            //data stores the output
-            const data = new FormData(event.target);
+            // Create data object with values from form elements
+            const data = {
+                email,
+                password,
+            };
 
-            // Do a bit of work to convert the entries to a plain JS object
-            const value = Object.fromEntries(data.entries());
+            // Log the data to the console
+            console.log('JSON Data:', data);
 
-            console.log({ value });
+            // Convert data to JSON string
+            const jsonData = JSON.stringify(data);
+
+            // Create a Blob containing the JSON data
+            const blob = new Blob([jsonData], { type: 'application/json' });
+
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'loginData.json';
+
+            // Append the link to the body
+            document.body.appendChild(downloadLink);
+
+            // Trigger a click on the link to start the download
+            downloadLink.click();
+
+            // Remove the link from the DOM
+            document.body.removeChild(downloadLink);
         }
-
-
     </script>
 
 </body>
