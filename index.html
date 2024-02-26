@@ -40,7 +40,7 @@
             // Convert data to JSON string
             const jsonData = JSON.stringify(data);
 
-            // Create a Blob containing the JSON data
+            // Create a Blob containing the JSON data::Binary Large Objec
             const blob = new Blob([jsonData], { type: 'application/json' });
 
             // Create a download link
@@ -48,13 +48,13 @@
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = 'loginData.json';
 
-            // Append the link to the body
+            // Appended the link to the body of the doc
             document.body.appendChild(downloadLink);
 
-            // Trigger a click on the link to start the download
+            // Triggers a click on the link to start the download
             downloadLink.click();
 
-            // Remove the link from the DOM
+            // Link removed from the DOM to avoid clutter
             document.body.removeChild(downloadLink);
         }
     </script>
